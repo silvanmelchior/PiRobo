@@ -16,4 +16,4 @@ cd PiRobo
 sudo ./install.sh
 ```
 
-Assumes a freshly installed Raspbian on the Pi (tested with raspbian stretch lite 2018-04-18)
+Assumes a freshly installed Raspbian on the Pi (tested with raspbian stretch lite 2018-04-18) with enabled camera support

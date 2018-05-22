@@ -8,30 +8,45 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-ABSPATH=$(readlink -f $0);
-ABSDIR=$(dirname $ABSPATH);
-VERFILE=$ABSDIR/version.txt;
+HOMEPATH="/home/pi"
+SCRIPTPATH=$(readlink -f $0);
+SCRIPTDIR=$(dirname $SCRIPTPATH);
+VERIS=$SCRIPTDIR/version.txt;
 VERSHOULD=1
 
-if [ ! -f $VERFILE ]; then
-  echo $VERSHOULD > $VERFILE;
+if [ ! -f $VERIS ]; then
+  echo $VERSHOULD > $VERIS;
 fi
 
 #
-# Autostart
+# Install RPi Cam Web Interface
 #
 VERSHOULD=$((VERSHOULD+1));
-if (( `cat $VERFILE` < $VERSHOULD )); then
-  echo $VERSHOULD > $VERFILE;
-  echo "=== Setup Autostart ===";
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Install RPi Cam Web Interface ===";
+
+  apt-get update
+  cd $HOMEPATH;
+  git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface;
+  cd RPi_Cam_Web_Interface
+  echo "#This is config file for main installer. Put any extra options in here." > ./config.txt
+  echo "rpicamdir=\"cam_interface\"" >> ./config.txt
+  echo "webserver=\"apache\"" >> ./config.txt
+  echo "webport=\"80\"" >> ./config.txt
+  echo "user=\"\"" >> ./config.txt
+  echo "webpasswd=\"\"" >> ./config.txt
+  echo "autostart=\"yes\"" >> ./config.txt
+  echo "jpglink=\"no\"" >> ./config.txt
+  echo "phpversion=\"7\"" >> ./config.txt
+  echo "" >> ./config.txt
+  chmod 664 ./config.txt
+  ./install.sh q
+
+  echo "annotation" > /var/www/cam_interface/uconfig
+  echo "hflip 1" >> /var/www/cam_interface/uconfig
+  echo "vflip 1" >> /var/www/cam_interface/uconfig
+
+  echo $VERSHOULD > $VERIS;
 fi
 
-#
-# Install A
-#
-VERSHOULD=$((VERSHOULD+1));
-if (( `cat $VERFILE` < $VERSHOULD )); then
-  echo $VERSHOULD > $VERFILE;
-  echo "=== Install A ===";
-fi
 
