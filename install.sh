@@ -3,6 +3,11 @@
 #
 # Init
 #
+if [[ $EUID -ne 0 ]]; then
+  echo "This script must be run as root" 
+  exit 1
+fi
+
 ABSPATH=$(readlink -f $0);
 ABSDIR=$(dirname $ABSPATH);
 VERFILE=$ABSDIR/version.txt;
