@@ -66,6 +66,25 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Configure Icecoder
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Configure Webserver ===";
+
+  chmod 777 $SCRIPTDIR/www/icecoder/backups
+  chmod 777 $SCRIPTDIR/www/icecoder/lib
+  chmod 777 $SCRIPTDIR/www/icecoder/plugins
+  chmod 777 $SCRIPTDIR/www/icecoder/test
+  chmod 777 $SCRIPTDIR/www/icecoder/tmp
+
+  mkdir $HOMEPATH/usercode
+  chmod 777 $HOMEPATH/usercode
+
+  echo $VERSHOULD > $VERIS;
+fi
+
 
 
 # TODO

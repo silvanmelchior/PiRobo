@@ -26,7 +26,7 @@ include_once(dirname(__FILE__)."/settings-common.php");
 $username = "";
 if (isset($_POST['username']) && $_POST['username'] != "") {$username = strClean($_POST['username']."-");};
 if (isset($_SESSION['username']) && $_SESSION['username'] != "") {$username = strClean($_SESSION['username']."-");};
-$settingsFile = 'config-'.$username.str_replace(".","_",str_replace("www.","",$_SERVER['SERVER_NAME'])).'.php';
+$settingsFile = 'config-localhost.php'; // REPLACE FROM 'config-'.$username.str_replace(".","_",str_replace("www.","",$_SERVER['SERVER_NAME'])).'.php';
 
 // Login is default
 $setPWorLogin = "login";
@@ -250,7 +250,7 @@ if ((!$_SESSION['loggedIn'] || $ICEcoder["password"] == "") && !strpos($_SERVER[
 		if ($serverAddr == "1" || $serverAddr == "::1") {
 			$serverAddr = "127.0.0.1";
 		}
-		$settingsFileAddr = 'config-'.$username.str_replace(".","_",$serverAddr).'.php';
+		$settingsFileAddr = 'config-localhost.php'; // REPLACE FROM 'config-'.$username.str_replace(".","_",$serverAddr).'.php';
 		if (!file_exists(dirname(__FILE__)."/".$settingsFileAddr)) {
 			if (!copy(dirname(__FILE__)."/".$settingsFile, dirname(__FILE__)."/".$settingsFileAddr)) {
 				die("Couldn't create $settingsFileAddr. Maybe you need write permissions on the lib folder?");
