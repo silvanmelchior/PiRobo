@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 #
 # Init
 #
@@ -17,6 +18,7 @@ VERSHOULD=1
 if [ ! -f $VERIS ]; then
   echo $VERSHOULD > $VERIS;
 fi
+
 
 #
 # Install RPi Cam Web Interface
@@ -48,5 +50,31 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 
   echo $VERSHOULD > $VERIS;
 fi
+
+
+#
+# Configure Webserver
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Configure Webserver ===";
+
+  rm -rf /var/www/html
+  ln -s $SCRIPTDIR/www /var/www/pirobo
+
+  echo $VERSHOULD > $VERIS;
+fi
+
+
+
+
+# TODO
+# Control PiRobo over smartphone as before
+# Log-Files Appache not touchscreen logging etc.
+# Aruco
+# Code-Editor & compiler
+
+
+
 
 
