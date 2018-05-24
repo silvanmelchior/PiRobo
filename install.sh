@@ -79,6 +79,10 @@ if (( `cat $VERIS` < $VERSHOULD )); then
   chmod 777 $SCRIPTDIR/www/icecoder/test
   chmod 777 $SCRIPTDIR/www/icecoder/tmp
 
+  cp $SCRIPTDIR/copysrc/config-localhost.php $SCRIPTDIR/www/icecoder/lib/config-localhost.php
+  chmod 777 $SCRIPTDIR/www/icecoder/lib/config-localhost.php
+  chmod 777 $SCRIPTDIR/www/icecoder/lib/config___settings.php
+
   mkdir $HOMEPATH/usercode
   chmod 777 $HOMEPATH/usercode
 
