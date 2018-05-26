@@ -11,7 +11,7 @@
 
 	<body>
 		<center>
-			<h1>PiRobo Ctrl</h1>
+			<h1>PiRobo Admin Ctrl</h1>
 		</center>
 		<img id="cam_pic">
 		<div id="input_area">
