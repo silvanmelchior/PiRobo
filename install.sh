@@ -109,13 +109,28 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Setup Autostart
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Setup Autostart & Autoupdate ===";
+
+  CMD=$SCRIPTDIR/startup_I.sh
+  sed -i '$i'$CMD /etc/rc.local
+
+  echo $VERSHOULD > $VERIS;
+fi
+
+
+
 
 
 # TODO
-# Control PiRobo over smartphone as before
 # Log-Files Appache not touchscreen logging etc.
 # Aruco
 # Code-Editor & compiler
+# WLAN überl
 
 
 
