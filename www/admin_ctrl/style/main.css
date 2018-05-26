@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+	margin-top: 30px;
+}
+
+#cam_pic {
+	width: 90%;
+	max-width: 450px;
+	margin: auto;
+	margin-top: 20px;
+	display: block;
+}
+
+#input_area {
+	position: relative;
+	width: 172px;
+	height: 172px;
+	line-height: 50px;
+	margin: auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	border: 1px solid #BBB;
+	border-radius: 28px;
+	transition: border 1s;
+}
+
+#input_area div {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	background-color: #EEE;
+	border: 1px solid #BBB;
+	line-height: 50px;
+	text-align: center;
+	font-size: 36px;
+	font-weight: bold;
+	transition: opacity 1s;
+}
+
+#keyboard_up {
+	top: 30px;
+	left: 60px;
+	opacity: 0;
+}
+
+#keyboard_left {
+	top: 90px;
+	left: 0px;
+	opacity: 0;
+}
+
+#keyboard_down {
+	top: 90px;
+	left: 60px;
+	opacity: 0;
+}
+
+#keyboard_right {
+	top: 90px;
+	left: 120px;
+	opacity: 0;
+}
+
+#touch_ctrl {
+	border-radius: 50%;
+	background-color: #AAA !important;
+	border: 1px solid #666 !important;
+}
