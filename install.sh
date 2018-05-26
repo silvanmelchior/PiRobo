@@ -90,6 +90,26 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Setup Motor Drivers
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Setup Motor Drivers ===";
+
+  apt-get update
+  apt-get install -y build-essential python-dev python-smbus
+  apt-get install -y python3-pip
+  cd $HOMEPATH;
+  git clone https://github.com/adafruit/Adafruit-Motor-HAT-Python-Library.git
+  cd Adafruit-Motor-HAT-Python-Library
+  python3 setup.py install
+
+  echo $VERSHOULD > $VERIS;
+fi
+
+
+
 
 # TODO
 # Control PiRobo over smartphone as before
