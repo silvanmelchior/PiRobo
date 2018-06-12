@@ -142,7 +142,7 @@ def cmd_handle(cmd):
         
             
 #
-# Main-Loop
+# Main-Loop TODO: wrong, check out web-service and online-tutorial
 #
 while True:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

@@ -32,7 +32,7 @@
             <div class="card-body">
               <button type="button" class="btn btn-lg btn-secondary btn-block" onclick="compile()">Compile</button>
               <div class="btn-group btn-block" role="group">
-                <button type="button" style="width:50%;" class="btn btn-lg btn-success">Run</button>
+                <button type="button" style="width:50%;" class="btn btn-lg btn-success" onclick="run()">Run</button>
                 <button type="button" style="width:50%;" class="btn btn-lg btn-danger" disabled>Stop</button>
               </div>
             </div>

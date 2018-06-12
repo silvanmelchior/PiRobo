@@ -146,7 +146,7 @@ fi
 
 
 # TODO
-# Log-Files Appache not touchscreen logging etc.
+# Log-Files Appache not touchscreen and status logging etc.
 # Code-Editor & compiler
 # WLAN überl
 

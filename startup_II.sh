@@ -10,4 +10,4 @@ SCRIPTPATH=$(readlink -f $0);
 SCRIPTDIR=$(dirname $SCRIPTPATH);
 
 
-python3 $SCRIPTDIR/services/motor_test.py &
+python3 $SCRIPTDIR/services/web_service.py &
