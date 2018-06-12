@@ -30,7 +30,7 @@
               Run Control
             </div>
             <div class="card-body">
-              <button type="button" class="btn btn-lg btn-secondary btn-block">Compile</button>
+              <button type="button" class="btn btn-lg btn-secondary btn-block" onclick="compile()">Compile</button>
               <div class="btn-group btn-block" role="group">
                 <button type="button" style="width:50%;" class="btn btn-lg btn-success">Run</button>
                 <button type="button" style="width:50%;" class="btn btn-lg btn-danger" disabled>Stop</button>
@@ -58,8 +58,7 @@
               Output
             </div>
             <div class="card-body">         
-<pre>Compilation successfull!
-Running Program...</pre>
+              <pre id="output_section">Loading...</pre>
             </div>
           </div>
 
@@ -69,9 +68,10 @@ Running Program...</pre>
     </div>
 
     
-    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 
   </body>
 </html>
