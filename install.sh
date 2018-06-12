@@ -149,6 +149,7 @@ fi
 # Log-Files Appache not touchscreen and status logging etc.
 # Code-Editor & compiler
 # WLAN überl
+# Show CPU-usage etc on start-screen (and maybe battery percentage etc.)
 
 
 
