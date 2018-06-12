@@ -6,7 +6,7 @@
 	  $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 	  socket_connect($socket, 'localhost', 56000);
 	  socket_write($socket, "get", 3);
-	  $msg = socket_read($socket, 102400); # TODO
+	  $msg = socket_read($socket, 10240);
 	  socket_close($socket);
 	
 	  # calc hash

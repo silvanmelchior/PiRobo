@@ -30,10 +30,10 @@
               Run Control
             </div>
             <div class="card-body">
-              <button type="button" class="btn btn-lg btn-secondary btn-block" onclick="compile()">Compile</button>
+              <button id="compile_btn" type="button" class="btn btn-lg btn-secondary btn-block" onclick="compile()">Compile</button>
               <div class="btn-group btn-block" role="group">
-                <button type="button" style="width:50%;" class="btn btn-lg btn-success" onclick="run()">Run</button>
-                <button type="button" style="width:50%;" class="btn btn-lg btn-danger" disabled>Stop</button>
+                <button id="run_btn" type="button" style="width:50%;" class="btn btn-lg btn-success" onclick="run()">Run</button>
+                <button id="stop_btn" type="button" style="width:50%;" class="btn btn-lg btn-danger" onclick="stop()">Stop</button>
               </div>
             </div>
           </div>
@@ -51,14 +51,14 @@
           </div>
 
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 mb-4">
 
           <div class="card">
             <div class="card-header">
               Output
             </div>
             <div class="card-body">         
-              <pre id="output_section">Loading...</pre>
+              <pre id="output_section">No output</pre>
             </div>
           </div>
 

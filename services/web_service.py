@@ -9,7 +9,9 @@ import atexit
 # Config
 #
 base_port = 56000
-
+start_msg = "<19853732 start>"
+end_msg = "<19853732 end>"
+stop_msg = "<19853732 stop>"
 
 #
 # Create sockets
@@ -36,14 +38,22 @@ atexit.register(exit_handler)
 # Main loop program side
 #
 def program_worker():
-    global web_output, s2
+    global web_output, s2, running
     while True:
         conn, addr = s2.accept()
-        msg = conn.recv(102400) # TODO
-        web_output = web_output + msg
+        msg = conn.recv(10240)
+        if msg == start_msg.encode('utf-8'):
+            web_output = b'Executing program...\n'
+            running = True
+        elif msg == end_msg.encode('utf-8'):
+            web_output = web_output + b'Terminated'
+            running = False
+        else:
+            web_output = web_output + msg
         conn.close()
 
-web_output = b''
+running = False
+web_output = b'No program executed'
 t = threading.Thread(target=program_worker)
 t.start()
 
@@ -56,7 +66,10 @@ while True:
     msg = conn.recv(3)
     
     if msg == b'get':
-        answer = web_output
+        if running:
+            answer = web_output
+        else:
+            answer = web_output + stop_msg.encode('utf-8')
         try:
             totalsent = 0
             while totalsent < len(answer):
