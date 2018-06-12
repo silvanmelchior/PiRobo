@@ -85,6 +85,9 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 
   mkdir $HOMEPATH/usercode
   chmod 777 $HOMEPATH/usercode
+  
+  cp $SCRIPTDIR/copysrc/main.c $HOMEPATH/usercode/main.c
+  chmod 777 $HOMEPATH/usercode/main.c
 
   echo $VERSHOULD > $VERIS;
 fi
@@ -121,9 +124,6 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 
   echo $VERSHOULD > $VERIS;
 fi
-
-
-
 
 
 # TODO
