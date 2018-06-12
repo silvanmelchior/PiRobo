@@ -18,7 +18,7 @@
   }
   
   # compile
-  $res = shell_exec("gcc -o $target/main $target/main.c 2>&1");
+  $res = shell_exec("gcc -pthread -o $target/main $target/main.c $target/inc/pirobo.c 2>&1");
   if($res == "") echo "Compilation successful!";
   else echo $res;
 

@@ -1,0 +1,20 @@
+volatile int key_w_state;
+volatile int key_a_state;
+volatile int key_s_state;
+volatile int key_d_state;
+volatile int key_i_state;
+volatile int key_j_state;
+volatile int key_k_state;
+volatile int key_l_state;
+volatile int key_0_state;
+volatile int key_1_state;
+volatile int key_2_state;
+volatile int key_3_state;
+volatile int key_4_state;
+volatile int key_5_state;
+volatile int key_6_state;
+volatile int key_7_state;
+volatile int key_8_state;
+volatile int key_9_state;
+
+void init_keyboard(void);

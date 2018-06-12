@@ -93,6 +93,8 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 
   cp $SCRIPTDIR/copysrc/main $HOMEPATH/build/main
   chmod 777 $HOMEPATH/build/main
+  
+  ln -s $SCRIPTDIR/inc $HOMEPATH/build/inc
 
   echo $VERSHOULD > $VERIS;
 fi
@@ -147,11 +149,14 @@ fi
 
 # TODO
 # Log-Files Appache not touchscreen and status logging etc.
-# Code-Editor & compiler
-# WLAN überl
+# Pwd-protection (?) on original screen or just redirection
+# Things in google keep
+# Hardware
+# WLAN
 # Show CPU-usage etc on start-screen (and maybe battery percentage etc.)
-
-
+# Test with many devices in same wlan (camera update rate?)
+# Test different browsers! E.g. Edge on windows
+# Helpful main.c (and copy as template.c) at default
 
 
 
