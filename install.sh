@@ -12,7 +12,7 @@ fi
 HOMEPATH="/home/pi"
 SCRIPTPATH=$(readlink -f $0);
 SCRIPTDIR=$(dirname $SCRIPTPATH);
-VERIS=$SCRIPTDIR/version.txt;
+VERIS=$SCRIPTDIR/install_log.txt;
 VERSHOULD=1
 
 if [ ! -f $VERIS ]; then
@@ -126,9 +126,22 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Set ID
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Set ID ===";
+
+  ID=`date +%s`
+  echo $ID > $SCRIPTDIR/ID.txt
+
+  echo $VERSHOULD > $VERIS;
+fi
+
+
 # TODO
 # Log-Files Appache not touchscreen logging etc.
-# Aruco
 # Code-Editor & compiler
 # WLAN überl
 
