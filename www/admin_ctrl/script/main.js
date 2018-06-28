@@ -42,12 +42,15 @@ function keyupdate() {
 	document.getElementById("keyboard_right").style.backgroundColor =
 		keypressed['right'] ? col_yes : col_no
 
-	queue_cmd(
-		"key update " +
-		(keypressed['up'] ? "1 " : "0 ") +
-		(keypressed['left'] ? "1 " : "0 ") +
-		(keypressed['down'] ? "1 " : "0 ") +
-		(keypressed['right'] ? "1 " : "0 "))
+  if(keypressed['up'] && !keypressed['left'] && !keypressed['right'] && !keypressed['down'])
+    queue_cmd("motor forward");
+  else if(keypressed['up'] && keypressed['left'] && !keypressed['right'] && !keypressed['down'])
+    queue_cmd("motor left");
+  else if(keypressed['up'] && !keypressed['left'] && keypressed['right'] && !keypressed['down'])
+    queue_cmd("motor right");
+  else
+    queue_cmd("motor stop");
+
 }
 
 function keydown(e) {

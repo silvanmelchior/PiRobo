@@ -14,3 +14,5 @@ SCRIPTDIR=$(dirname $SCRIPTPATH);
 
 # start services
 python3 $SCRIPTDIR/services/web_service.py &
+python3 $SCRIPTDIR/services/hw_service.py &
+
