@@ -142,6 +142,20 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Install Drivers
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Install Drivers ===";
+
+  apt-get update
+  apt-get install -y python3-rpi.gpio
+
+  echo $VERSHOULD > $VERIS;
+fi
+
+
 
 # TODO
 # Bug: run-cmd on website need 2s for output if same as before
