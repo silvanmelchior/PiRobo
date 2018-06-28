@@ -9,5 +9,8 @@ fi
 SCRIPTPATH=$(readlink -f $0);
 SCRIPTDIR=$(dirname $SCRIPTPATH);
 
+# update stage II
+./install.sh
 
+# start services
 python3 $SCRIPTDIR/services/web_service.py &

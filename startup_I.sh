@@ -9,9 +9,9 @@ fi
 SCRIPTPATH=$(readlink -f $0);
 SCRIPTDIR=$(dirname $SCRIPTPATH);
 
-
+# update stage I
 cd $SCRIPTDIR
-git pull # TODO
+git pull
 
-echo "Start Services"
+# continue with newly loaded files
 ./startup_II.sh

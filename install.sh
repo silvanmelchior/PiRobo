@@ -101,25 +101,6 @@ fi
 
 
 #
-# Setup Motor Drivers
-#
-VERSHOULD=$((VERSHOULD+1));
-if (( `cat $VERIS` < $VERSHOULD )); then
-  echo "=== Setup Motor Drivers ===";
-
-  apt-get update
-  apt-get install -y build-essential python-dev python-smbus
-  apt-get install -y python3-pip
-  cd $HOMEPATH;
-  git clone https://github.com/adafruit/Adafruit-Motor-HAT-Python-Library.git
-  cd Adafruit-Motor-HAT-Python-Library
-  python3 setup.py install
-
-  echo $VERSHOULD > $VERIS;
-fi
-
-
-#
 # Setup Autostart
 #
 VERSHOULD=$((VERSHOULD+1));
@@ -148,9 +129,10 @@ fi
 
 
 # TODO
+# Test if auto-update including installscript-call works
 # Log-Files Appache not touchscreen and status logging etc.
 # Pwd-protection (?) on original screen or just redirection
-# Things in google keep
+# Things in google keep and owncloud
 # Hardware
 # WLAN
 # Show CPU-usage etc on start-screen (and maybe battery percentage etc.)
