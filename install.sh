@@ -71,7 +71,7 @@ fi
 #
 VERSHOULD=$((VERSHOULD+1));
 if (( `cat $VERIS` < $VERSHOULD )); then
-  echo "=== Configure Webserver ===";
+  echo "=== Configure Icecoder ===";
 
   chmod 777 $SCRIPTDIR/www/icecoder/backups
   chmod 777 $SCRIPTDIR/www/icecoder/lib
@@ -128,8 +128,23 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Install Python
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Install Python ===";
+
+  apt-get update
+  apt-get install -y build-essential python3-dev python3-smbus python3-serial python3-pip
+
+  echo $VERSHOULD > $VERIS;
+fi
+
+
+
 # TODO
-# Test if auto-update including installscript-call works
+# Bug: run-cmd on website need 2s for output if same as before
 # Log-Files Appache not touchscreen and status logging etc.
 # Pwd-protection (?) on original screen or just redirection
 # Things in google keep and owncloud

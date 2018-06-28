@@ -15,6 +15,7 @@ function compile() {
 
 function run() {
 
+  running = true;
   $.get("run.php?"+ new Date());
 
 }
