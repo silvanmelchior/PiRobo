@@ -21,9 +21,6 @@
 			<div id="keyboard_right">&rarr;</div>
 			<div id="touch_ctrl"></div>  		
 		</div>
-		<center>
-  		<a id="tag_swap_link" href="javascript:tag_swap();"></a>
-		</center>
 		<br><br>
 	</body>
 	<script>init()</script>

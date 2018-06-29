@@ -43,13 +43,23 @@ function keyupdate() {
 		keypressed['right'] ? col_yes : col_no
 
   if(keypressed['up'] && !keypressed['left'] && !keypressed['right'] && !keypressed['down'])
-    queue_cmd("motor forward");
+    queue_cmd("motor 1 1");
   else if(keypressed['up'] && keypressed['left'] && !keypressed['right'] && !keypressed['down'])
-    queue_cmd("motor left");
+    queue_cmd("motor 1 0");
   else if(keypressed['up'] && !keypressed['left'] && keypressed['right'] && !keypressed['down'])
-    queue_cmd("motor right");
+    queue_cmd("motor 0 1");
+  else if(!keypressed['up'] && keypressed['left'] && !keypressed['right'] && !keypressed['down'])
+    queue_cmd("motor 1 -1");
+  else if(!keypressed['up'] && !keypressed['left'] && keypressed['right'] && !keypressed['down'])
+    queue_cmd("motor -1 1");
+  else if(!keypressed['up'] && !keypressed['left'] && !keypressed['right'] && keypressed['down'])
+    queue_cmd("motor -1 -1");
+  else if(!keypressed['up'] && keypressed['left'] && !keypressed['right'] && keypressed['down'])
+    queue_cmd("motor -1 0");
+  else if(!keypressed['up'] && !keypressed['left'] && keypressed['right'] && keypressed['down'])
+    queue_cmd("motor 0 -1");
   else
-    queue_cmd("motor stop");
+    queue_cmd("motor 0 0");
 
 }
 
@@ -72,23 +82,33 @@ function touchstart(e) {
 	x_finger_bak = e.changedTouches[0].screenX
 	y_finger_bak = e.changedTouches[0].screenY
 	show_ctrl(true)
-	queue_cmd("touch start")
 	return false
 }
 
 function touchmove(e) {
 	clipped = pos_clip(e)
 	pos_ctrl(clipped[0], clipped[1])
-	queue_cmd(
-		"touch move " +
-		Math.floor(clipped[0]*100/120) + " " +
-		Math.floor(clipped[1]*100/120))
+	x = clipped[0]*100/120
+	y = clipped[1]*100/120
+  if(y <= 50) {
+    speed = (50-y)/50
+    sign = 1
+  }
+  else {
+    speed = (y-50)/50
+    sign = -1
+  }
+  l = Math.min(1,1 - (50-x)/50)
+  r = Math.min(1,1 - (x-50)/50)
+  l *= speed*sign
+  r *= speed*sign
+	queue_cmd("motor " + l + " " + r)
 	return false
 }
 
 function touchend(e) {
 	pos_ctrl(x_obj_bak, y_obj_bak)
-	queue_cmd("touch end")
+	queue_cmd("motor 0 0")
 	return false
 }
 

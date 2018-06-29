@@ -4,7 +4,7 @@ import threading
 import atexit
 import RPi.GPIO as GPIO
 import time
-from AlphaBot import AlphaBot
+from drivers import Motor
 
 
 #
@@ -15,15 +15,12 @@ base_port = 56000
 #
 # Init HW
 #
-Ab = AlphaBot()
-DR = 16
-DL = 19
+# General
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(DR,GPIO.IN,GPIO.PUD_UP)
-GPIO.setup(DL,GPIO.IN,GPIO.PUD_UP)
+# Motors
+motor = Motor()
 
-Ab.stop()
 
 #
 # Create sockets
@@ -46,14 +43,9 @@ while True:
     conn, addr = s.accept()
     msg = conn.recv(1024)
     
-    if msg == b'motor forward':
-        Ab.forward()
-    elif msg == b'motor left':
-        Ab.left()
-    elif msg == b'motor right':
-        Ab.right()
-    elif msg == b'motor stop':
-        Ab.stop()
+    if msg[:6] == b'motor ':
+        l, r = msg[6:].decode('ascii').split(' ')
+        motor.setMotor(float(l), float(r))
 
     conn.close()
 

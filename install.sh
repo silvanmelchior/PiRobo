@@ -163,12 +163,12 @@ fi
 # Log-Files Appache not touchscreen and status logging etc.
 # Pwd-protection (?) on original screen or just redirection
 # Things in google keep and owncloud
-# Hardware
 # WLAN
 # Show CPU-usage etc on start-screen (and maybe battery percentage etc.)
 # Test with many devices in same wlan (camera update rate?)
 # Test different browsers! E.g. Edge on windows
 # Helpful main.c (and copy as template.c) at default
+# Check out cpu usage, maybe sth unnecessarily high
 
 
 
