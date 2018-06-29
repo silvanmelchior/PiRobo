@@ -156,6 +156,28 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Configure Default Wlan
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Configure Default Wlan ===";
+
+  echo "" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "network={" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "  ssid=\"PiRobo_Ctrl\"" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "  psk=\"raspberry007\"" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "}" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "network={" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "  ssid=\"Enter_Name\"" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "  psk=\"Enter_PWD\"" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "}" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+
+
+  echo $VERSHOULD > $VERIS;
+fi
+
 
 # TODO
 # Bug: run-cmd on website need 2s for output if same as before
