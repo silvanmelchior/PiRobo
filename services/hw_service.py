@@ -23,6 +23,8 @@ GPIO.setwarnings(False)
 GPIO.setup(DR,GPIO.IN,GPIO.PUD_UP)
 GPIO.setup(DL,GPIO.IN,GPIO.PUD_UP)
 
+Ab.stop()
+
 #
 # Create sockets
 #

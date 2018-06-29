@@ -11,7 +11,7 @@ SCRIPTDIR=$(dirname $SCRIPTPATH);
 
 # update stage I
 cd $SCRIPTDIR
-git pull
+sudo -u pi git pull
 
 # continue with newly loaded files
 ./startup_II.sh
