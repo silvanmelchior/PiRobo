@@ -4,7 +4,7 @@ import threading
 import atexit
 import RPi.GPIO as GPIO
 import time
-from drivers import Motor
+import drivers
 
 
 #
@@ -18,8 +18,9 @@ base_port = 56000
 # General
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-# Motors
-motor = Motor()
+# Instances
+motors = drivers.Motors()
+servos = drivers.Servos()
 
 
 #
@@ -45,7 +46,7 @@ while True:
     
     if msg[:6] == b'motor ':
         l, r = msg[6:].decode('ascii').split(' ')
-        motor.setMotor(float(l), float(r))
+        motors.setMotors(float(l)*100, float(r)*100)
 
     conn.close()
 

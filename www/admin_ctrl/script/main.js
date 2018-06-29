@@ -45,19 +45,19 @@ function keyupdate() {
   if(keypressed['up'] && !keypressed['left'] && !keypressed['right'] && !keypressed['down'])
     queue_cmd("motor 1 1");
   else if(keypressed['up'] && keypressed['left'] && !keypressed['right'] && !keypressed['down'])
-    queue_cmd("motor 1 0");
-  else if(keypressed['up'] && !keypressed['left'] && keypressed['right'] && !keypressed['down'])
     queue_cmd("motor 0 1");
+  else if(keypressed['up'] && !keypressed['left'] && keypressed['right'] && !keypressed['down'])
+    queue_cmd("motor 1 0");
   else if(!keypressed['up'] && keypressed['left'] && !keypressed['right'] && !keypressed['down'])
-    queue_cmd("motor 1 -1");
-  else if(!keypressed['up'] && !keypressed['left'] && keypressed['right'] && !keypressed['down'])
     queue_cmd("motor -1 1");
+  else if(!keypressed['up'] && !keypressed['left'] && keypressed['right'] && !keypressed['down'])
+    queue_cmd("motor 1 -1");
   else if(!keypressed['up'] && !keypressed['left'] && !keypressed['right'] && keypressed['down'])
     queue_cmd("motor -1 -1");
   else if(!keypressed['up'] && keypressed['left'] && !keypressed['right'] && keypressed['down'])
-    queue_cmd("motor -1 0");
-  else if(!keypressed['up'] && !keypressed['left'] && keypressed['right'] && keypressed['down'])
     queue_cmd("motor 0 -1");
+  else if(!keypressed['up'] && !keypressed['left'] && keypressed['right'] && keypressed['down'])
+    queue_cmd("motor -1 0");
   else
     queue_cmd("motor 0 0");
 
