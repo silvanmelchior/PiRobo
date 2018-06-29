@@ -159,6 +159,7 @@ fi
 
 # TODO
 # Bug: run-cmd on website need 2s for output if same as before
+# Overview-page mobile layout
 # Log-Files Appache not touchscreen and status logging etc.
 # Pwd-protection (?) on original screen or just redirection
 # Things in google keep and owncloud

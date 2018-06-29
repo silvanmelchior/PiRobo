@@ -15,9 +15,10 @@
       <ul class="navbar-nav mr-auto">
       </ul>
       <form action="icecoder" target="_blank">
-        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-external-link-alt"></i> Code Editor</button>
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-external-link-alt"></i> Editor</button>
       </form>
       <button onclick="window.open('camera.php', 'yyyyy', 'width=550,height=380,resizable=no,toolbar=no,menubar=no,location=no,status=no');" class="btn btn-outline-secondary my-2 my-sm-0 ml-2" type="submit"><i class="fas fa-external-link-alt"></i> Camera</button>
+      <button type="button" class="btn btn-outline-secondary my-2 my-sm-0 ml-2" data-toggle="modal" data-target="#shutdownModal"><i class="fas fa-power-off"></i></button>
     </nav>
 
     <div class="container-fluid mt-2">
@@ -103,6 +104,33 @@
             </div>
           </div>
 
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="shutdownModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Power Off</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Do you want to shutdown the system?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <form action="power.php" method="POST">
+              <input type="hidden" name="action" value="reboot">
+              <button type="submit" class="btn btn-danger"><i class="fas fa-redo"></i> Restart</button>
+            </form>
+            <form action="power.php" method="POST">
+              <input type="hidden" name="action" value="shutdown">
+              <button type="submit" class="btn btn-danger"><i class="fas fa-power-off"></i> Power Off</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,6 @@
 var running = true
 
 function compile() {
-
   $("#output_section").html("Compiling...<br>");
   
   $.get("compile.php?"+ new Date(),
@@ -9,22 +8,17 @@ function compile() {
       $("#output_section").append(data);
     }
   );
-
 }
 
 
 function run() {
-
   running = true;
   $.get("run.php?"+ new Date());
-
 }
 
 
 function stop() {
-
   $.get("stop.php?"+ new Date());
-
 }
 
 
@@ -56,14 +50,12 @@ function update_done(res) {
 
 
 function update(hash) {
-
   $.ajax({
     url: "status.php",
     data: "hash="+hash,
     success: update_done,
     error: function() {setTimeout("update('')", 2000)}
   });
-
 }
 
 
