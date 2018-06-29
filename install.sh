@@ -45,8 +45,8 @@ if (( `cat $VERIS` < $VERSHOULD )); then
   ./install.sh q
 
   echo "annotation" > /var/www/cam_interface/uconfig
-  echo "hflip 1" >> /var/www/cam_interface/uconfig
-  echo "vflip 1" >> /var/www/cam_interface/uconfig
+  echo "video_width 1296" >> /var/www/cam_interface/uconfig
+  echo "video_height 972" >> /var/www/cam_interface/uconfig
 
   echo $VERSHOULD > $VERIS;
 fi
@@ -169,6 +169,3 @@ fi
 # Test different browsers! E.g. Edge on windows
 # Helpful main.c (and copy as template.c) at default
 # Check out cpu usage, maybe sth unnecessarily high
-
-
-

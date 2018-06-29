@@ -17,7 +17,7 @@
       <form action="icecoder" target="_blank">
         <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-external-link-alt"></i> Editor</button>
       </form>
-      <button onclick="window.open('camera.php', 'yyyyy', 'width=550,height=380,resizable=no,toolbar=no,menubar=no,location=no,status=no');" class="btn btn-outline-secondary my-2 my-sm-0 ml-2" type="submit"><i class="fas fa-external-link-alt"></i> Camera</button>
+      <button onclick="window.open('camera.php', 'yyyyy', 'width=550,height=480,resizable=no,toolbar=no,menubar=no,location=no,status=no');" class="btn btn-outline-secondary my-2 my-sm-0 ml-2" type="submit"><i class="fas fa-external-link-alt"></i> Camera</button>
       <button type="button" class="btn btn-outline-secondary my-2 my-sm-0 ml-2" data-toggle="modal" data-target="#shutdownModal"><i class="fas fa-power-off"></i></button>
     </nav>
 
