@@ -174,7 +174,19 @@ if (( `cat $VERIS` < $VERSHOULD )); then
   echo "  psk=\"Enter_PWD\"" >> /etc/wpa_supplicant/wpa_supplicant.conf 
   echo "}" >> /etc/wpa_supplicant/wpa_supplicant.conf 
 
+  echo $VERSHOULD > $VERIS;
+fi
 
+
+#
+# Configure Automatic Redirect
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Configure Automatic Redirect ===";
+
+  cp $SCRIPTDIR/copysrc/redirect.php /var/www/index.php
+  
   echo $VERSHOULD > $VERIS;
 fi
 
