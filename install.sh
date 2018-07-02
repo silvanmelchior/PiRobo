@@ -192,14 +192,28 @@ fi
 
 
 # TODO
-# Bug: run-cmd on website need 2s for output if same as before
-# Overview-page mobile layout
-# Log-Files Appache not touchscreen and status logging etc.
-# Pwd-protection (?) on original screen or just redirection
-# Things in google keep and owncloud
-# WLAN
-# Show CPU-usage etc on start-screen (and maybe battery percentage etc.)
-# Test with many devices in same wlan (camera update rate?)
-# Test different browsers! E.g. Edge on windows
-# Helpful main.c (and copy as template.c) at default
-# Check out cpu usage, maybe sth unnecessarily high
+# Code:
+#   Drivers (line, i2c-things)
+#   Code-Editor HW-access (line, i2c-things)
+#   Display/Joystick (and maybe functions to access them)
+#   WLAN
+#   Show CPU-usage etc on start-screen (and maybe battery percentage etc.)
+#   Log-Files Appache not touchscreen and status logging etc.
+#   Helpful main.c (and copy as template.c) as default
+# Detail Bug:
+#   run-cmd on website need 2s for output if same as before
+#   (and fresh installation fredy strange first use)
+#   overview-page mobile layout
+# Scoreboard (see ownCloud)
+# Network incl. possibility to access inet
+# Test:
+#   Test different browsers! E.g. Edge on windows
+#   Test with many devices in same wlan w/o inet-access (camera update rate?)
+# Document:
+#   Explanation how to use at home (WLAN, admin-interface)
+#   Admin-Iface reminder that update s.t. from main screen
+#   HW-documentation to build robot
+#   Battery guideline allowed voltage
+# Fancy:
+#   Remote-Ctrl all Robots (run code, shutdown/reboot, ...)
+

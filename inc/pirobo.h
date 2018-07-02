@@ -17,4 +17,6 @@ volatile int key_7_state;
 volatile int key_8_state;
 volatile int key_9_state;
 
-void init_keyboard(void);
+void init_drivers(void);
+void set_motors(float l, float r);
+void set_servos(float pan, float tilt);
