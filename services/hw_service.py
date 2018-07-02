@@ -21,6 +21,8 @@ GPIO.setwarnings(False)
 # Instances
 motors = drivers.Motors()
 servos = drivers.Servos()
+pan_bak = 0.5
+tilt_bak = 0.5
 
 
 #
@@ -47,6 +49,13 @@ while True:
     if msg[:6] == b'motor ':
         l, r = msg[6:].decode('ascii').split(' ')
         motors.setMotors(float(l)*100, float(r)*100)
+
+    elif msg[:6] == b'servo ': # TODO: release of servo!!!
+        pan, tilt = msg[6:].decode('ascii').split(' ')
+        pan, tilt = float(pan), float(tilt)
+        if abs(pan-pan_bak) > 0.03 or abs(tilt-tilt_bak) > 0.03:
+            servos.setServos(pan*100, tilt*100)
+            pan_bak, tilt_bak = pan, tilt
 
     conn.close()
 
