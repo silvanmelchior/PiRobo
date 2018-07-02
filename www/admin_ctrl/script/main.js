@@ -25,6 +25,8 @@ var x_obj_bak = 60
 var y_obj_bak = 60
 var pan = 0.5
 var tilt = 0.5
+var pan_bak = 0.5
+var pan_tilt = 0.5
 var servo_steps = 0.05
 
 var next_cmd_motor = ""
@@ -116,7 +118,7 @@ function keyup(e) {
 
 
 //
-// Functions for touch
+// Functions for motor touch
 //
 function touchstart(e) {
 	x_finger_bak = e.changedTouches[0].screenX
@@ -179,28 +181,59 @@ function show_ctrl(touch) {
 
 
 //
+// Functions for servo touch
+//
+function servostart(e) {
+	x_finger_bak = e.changedTouches[0].screenX
+	y_finger_bak = e.changedTouches[0].screenY
+	return false
+}
+
+function servomove(e) {
+	diff_x = e.changedTouches[0].screenX - x_finger_bak
+	diff_y = e.changedTouches[0].screenY - y_finger_bak
+	console.log(diff_x/400 + " " + diff_y/400)
+
+  pan += diff_x/400
+  tilt += diff_y/400
+  if(pan >= 1) pan = 1
+  else if(pan <= 0) pan = 0
+  if(tilt >= 1) tilt = 1
+  else if(tilt <= 0) tilt = 0
+  //servo_update()
+	
+	return false
+}
+
+function servoend(e) {
+	return false
+}
+
+
+
+//
 // Functions for communication
 //
 function queue_cmd_motor(cmd) {
-	next_cmd_motor = cmd;
+	next_cmd_motor = cmd
 }
 
 function queue_cmd_servo(cmd) {
-	next_cmd_servo = cmd;
+	next_cmd_servo = cmd
 }
 
 function send_cmd() {
 	if(next_cmd_motor != last_cmd_motor) {
-		last_cmd_motor = next_cmd_motor;
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("POST", "cmd.php", true);
+		last_cmd_motor = next_cmd_motor
+		var xhttp = new XMLHttpRequest()
+		xhttp.open("POST", "cmd.php", true)
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
 		xhttp.send("ts=" + (new Date).getTime() + "&cmd=" + last_cmd_motor)
 	}
 	if(next_cmd_servo != last_cmd_servo) {
-		last_cmd_servo = next_cmd_servo;
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("POST", "cmd.php", true);
+		last_cmd_servo = next_cmd_servo
+		var xhttp = new XMLHttpRequest()
+		xhttp.open("POST", "cmd.php", true)
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
 		xhttp.send("ts=" + (new Date).getTime() + "&cmd=" + last_cmd_servo)
 	}
@@ -218,6 +251,9 @@ function init() {
 	document.getElementById("input_area").ontouchstart = touchstart
 	document.getElementById("input_area").ontouchmove = touchmove
 	document.getElementById("input_area").ontouchend = touchend
-	setInterval(send_cmd, 100)
+	document.getElementById("cam_pic").ontouchstart = servostart
+	document.getElementById("cam_pic").ontouchmove = servomove
+	document.getElementById("cam_pic").ontouchend = servoend
 	document.getElementById("cam_pic").src = "/cam_interface/cam_pic_new.php?pDelay=100000"
+	setInterval(send_cmd, 100)
 }

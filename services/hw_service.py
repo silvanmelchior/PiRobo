@@ -50,7 +50,7 @@ while True:
         l, r = msg[6:].decode('ascii').split(' ')
         motors.setMotors(float(l)*100, float(r)*100)
 
-    elif msg[:6] == b'servo ': # TODO: release of servo!!!
+    elif msg[:6] == b'servo ':
         pan, tilt = msg[6:].decode('ascii').split(' ')
         pan, tilt = float(pan), float(tilt)
         if abs(pan-pan_bak) > 0.03 or abs(tilt-tilt_bak) > 0.03:
