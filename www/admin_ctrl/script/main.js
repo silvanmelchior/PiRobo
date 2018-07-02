@@ -26,8 +26,9 @@ var y_obj_bak = 60
 var pan = 0.5
 var tilt = 0.5
 var pan_bak = 0.5
-var pan_tilt = 0.5
+var tilt_bak = 0.5
 var servo_steps = 0.05
+var servo_divider = 500
 
 var next_cmd_motor = ""
 var last_cmd_motor = ""
@@ -192,20 +193,21 @@ function servostart(e) {
 function servomove(e) {
 	diff_x = e.changedTouches[0].screenX - x_finger_bak
 	diff_y = e.changedTouches[0].screenY - y_finger_bak
-	console.log(diff_x/400 + " " + diff_y/400)
 
-  pan += diff_x/400
-  tilt += diff_y/400
+  pan = pan_bak + diff_x/servo_divider
+  tilt = tilt_bak - diff_y/servo_divider
   if(pan >= 1) pan = 1
   else if(pan <= 0) pan = 0
   if(tilt >= 1) tilt = 1
   else if(tilt <= 0) tilt = 0
-  //servo_update()
+  servo_update()
 	
 	return false
 }
 
 function servoend(e) {
+  pan_bak = pan
+  tilt_bak = tilt
 	return false
 }
 
