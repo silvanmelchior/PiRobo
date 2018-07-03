@@ -20,3 +20,4 @@ volatile int key_9_state;
 void init_drivers(void);
 void set_motors(float l, float r);
 void set_servos(float pan, float tilt);
+void get_linevalues(unsigned int *data);

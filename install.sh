@@ -193,8 +193,8 @@ fi
 
 # TODO
 # Code:
-#   Drivers (line, i2c-things)
-#   Code-Editor HW-access (line, i2c-things)
+#   Drivers (i2c-things)
+#   Code-Editor HW-access (i2c-things)
 #   Display/Joystick (and maybe functions to access them)
 #   WLAN
 #   Show CPU-usage etc on start-screen (and maybe battery percentage etc.)

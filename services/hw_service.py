@@ -13,7 +13,7 @@ import drivers
 base_port = 56000
 
 #
-# Init HW
+# Init
 #
 # General
 GPIO.setmode(GPIO.BCM)
@@ -21,8 +21,11 @@ GPIO.setwarnings(False)
 # Instances
 motors = drivers.Motors()
 servos = drivers.Servos()
+line = drivers.LineTracker()
+# Data
 pan_bak = 0.5
 tilt_bak = 0.5
+
 
 
 #
@@ -56,6 +59,20 @@ while True:
         if abs(pan-pan_bak) > 0.03 or abs(tilt-tilt_bak) > 0.03:
             servos.setServos(pan*100, tilt*100)
             pan_bak, tilt_bak = pan, tilt
+
+    elif msg[:4] == b'line':
+        values = line.getValues()
+        msg = ' '.join([str(val) for val in values])
+        msg = msg.encode('utf-8')
+        try:
+            totalsent = 0
+            while totalsent < len(msg):
+                sent = conn.send(msg[totalsent:])
+                if sent == 0:
+                    break
+                totalsent = totalsent + sent
+        except BrokenPipeError:
+            pass
 
     conn.close()
 

@@ -84,3 +84,46 @@ class Servos:
         self.PWMB.ChangeDutyCycle(0)
         
 
+
+class LineTracker:
+
+    def __init__(self,cs=5,clk=25,addr=24,do=23):
+        self.CS = cs
+        self.CLK = clk
+        self.ADDR = addr
+        self.DO = do
+        
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
+        GPIO.setup(self.CLK,GPIO.OUT)
+        GPIO.setup(self.ADDR,GPIO.OUT)
+        GPIO.setup(self.CS,GPIO.OUT)
+        GPIO.setup(self.DO,GPIO.IN,GPIO.PUD_UP)
+    
+    def getValues(self):
+        value = [0,0,0,0,0,0]
+        for j in range(0,6):
+            GPIO.output(self.CS, GPIO.LOW)
+            for i in range(0,4):
+                if(((j) >> (3 - i)) & 0x01):
+                    GPIO.output(self.ADDR,GPIO.HIGH)
+                else:
+                    GPIO.output(self.ADDR,GPIO.LOW)
+                value[j] <<= 1
+                if(GPIO.input(self.DO)):
+                    value[j] |= 0x01
+                GPIO.output(self.CLK,GPIO.HIGH)
+                GPIO.output(self.CLK,GPIO.LOW)
+            for i in range(0,6):
+                value[j] <<= 1
+                if(GPIO.input(self.DO)):
+                    value[j] |= 0x01
+                GPIO.output(self.CLK,GPIO.HIGH)
+                GPIO.output(self.CLK,GPIO.LOW)
+            for i in range(0,6):
+                GPIO.output(self.CLK,GPIO.HIGH)
+                GPIO.output(self.CLK,GPIO.LOW)
+            GPIO.output(self.CS,GPIO.HIGH)
+        return value[1:]
+
+

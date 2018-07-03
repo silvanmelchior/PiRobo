@@ -82,15 +82,16 @@ void *keyboard_server(void *threadid) {
 }
 
 
-void driver_msg(char *msg) {
+int driver_msg(char *msg, char *answer) {
 
+  int read_size = 0;
   int sock;
   struct sockaddr_in server;
 
   sock = socket(AF_INET, SOCK_STREAM, 0);
   if(sock == -1) {
-    printf("Error: Could not create socket");
-    return;
+    printf("Message Error: Could not create socket\n");
+    return -1;
   }
 
   server.sin_addr.s_addr = inet_addr("127.0.0.1");
@@ -98,16 +99,22 @@ void driver_msg(char *msg) {
   server.sin_port = htons(56000+10);
 
   if(connect(sock, (struct sockaddr *)&server, sizeof(server)) < 0) {
-    printf("Error: Could not connect");
-    return;
+    printf("Message Error: Could not connect\n");
+    return -1;
   }
 
   if(send(sock, msg, strlen(msg), 0) < 0) {
-    printf("Error: Could not send");
-    return;
+    printf("Message Error: Could not send\n");
+    return -1;
+  }
+
+  if(answer != NULL) {
+    read_size = recv(sock, answer, 1024, 0);
   }
 
   close(sock);
+  
+  return read_size;
 
 }
 
@@ -122,7 +129,7 @@ void set_motors(float l, float r) {
   else if(r <= -1) r = -1;
   sprintf(message, "motor %f %f", l, r);
   
-  driver_msg(message);
+  driver_msg(message, NULL);
 
 }
 
@@ -137,7 +144,17 @@ void set_servos(float pan, float tilt) {
   else if(tilt <= 0) tilt = 0;
   sprintf(message, "servo %f %f", pan, tilt);
   
-  driver_msg(message);
+  driver_msg(message, NULL);
+
+}
+
+
+void get_linevalues(unsigned int *data) {
+
+  char answer[1024];
+
+  driver_msg("line", answer);
+  sscanf(answer, "%d %d %d %d %d", data, data+1, data+2, data+3, data+4); 
 
 }
 
