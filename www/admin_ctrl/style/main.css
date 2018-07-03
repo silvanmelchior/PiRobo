@@ -70,3 +70,8 @@ h1 {
 	background-color: #AAA !important;
 	border: 1px solid #666 !important;
 }
+
+#expl_div {
+  text-align: center;
+  margin: 10px;
+}

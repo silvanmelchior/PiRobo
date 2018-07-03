@@ -6,8 +6,9 @@
 #include <unistd.h>
 #include <pthread.h>
 
+// all socket code from https://www.binarytides.com/server-client-example-c-sockets-linux/
 
-// modified version of https://www.binarytides.com/server-client-example-c-sockets-linux/
+
 void *keyboard_server(void *threadid) {
 
   int socket_desc, client_sock, c, read_size;
@@ -19,6 +20,8 @@ void *keyboard_server(void *threadid) {
   if(socket_desc == -1) {
     printf("Keyboard init error: could not create socket\n");
   }
+  int option = 1;
+  setsockopt(socket_desc, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
    
   // Prepare the sockaddr_in structure
   server.sin_family = AF_INET;
@@ -78,8 +81,89 @@ void *keyboard_server(void *threadid) {
   
 }
 
-void init_keyboard(void) {
 
+int driver_msg(char *msg, char *answer) {
+
+  int read_size = 0;
+  int sock;
+  struct sockaddr_in server;
+
+  sock = socket(AF_INET, SOCK_STREAM, 0);
+  if(sock == -1) {
+    printf("Message Error: Could not create socket\n");
+    return -1;
+  }
+
+  server.sin_addr.s_addr = inet_addr("127.0.0.1");
+  server.sin_family = AF_INET;
+  server.sin_port = htons(56000+10);
+
+  if(connect(sock, (struct sockaddr *)&server, sizeof(server)) < 0) {
+    printf("Message Error: Could not connect\n");
+    return -1;
+  }
+
+  if(send(sock, msg, strlen(msg), 0) < 0) {
+    printf("Message Error: Could not send\n");
+    return -1;
+  }
+
+  if(answer != NULL) {
+    read_size = recv(sock, answer, 1024, 0);
+  }
+
+  close(sock);
+  
+  return read_size;
+
+}
+
+
+void set_motors(float l, float r) {
+
+  char message[1000];
+
+  if(l >= 1) l = 1;
+  else if(l <= -1) l = -1;
+  if(r >= 1) r = 1;
+  else if(r <= -1) r = -1;
+  sprintf(message, "motor %f %f", l, r);
+  
+  driver_msg(message, NULL);
+
+}
+
+
+void set_servos(float pan, float tilt) {
+
+  char message[1000];
+
+  if(pan >= 1) pan = 1;
+  else if(pan <= 0) pan = 0;
+  if(tilt >= 1) tilt = 1;
+  else if(tilt <= 0) tilt = 0;
+  sprintf(message, "servo %f %f", pan, tilt);
+  
+  driver_msg(message, NULL);
+
+}
+
+
+void get_linevalues(unsigned int *data) {
+
+  char answer[1024];
+
+  driver_msg("line", answer);
+  sscanf(answer, "%d %d %d %d %d", data, data+1, data+2, data+3, data+4); 
+
+}
+
+
+void init_drivers(void) {
+
+  //
+  // Init keyboad
+  //
   key_w_state = 0;
   key_a_state = 0;
   key_s_state = 0;
