@@ -10,25 +10,32 @@
     
     $teams = $db->get_teams();
     $points = $db->get_state();
+    $out_html = array();
+    $out_points = array();
     for($i=0; $i<count($teams); $i++) {
-      echo "<tr><td>" . $teams[$i][0] . "</td>";
+      $html = "";
+      $html .= "<tr><td>" . $teams[$i][0] . "</td>";
       $total = 0;
       for($j=0; $j<count($points[$i]); $j++) {
         if($admin) {
-          echo "<td><form action=\"index.php?admin=" . $_GET["admin"] . "\" method=\"post\">";
-          echo "<input type=\"hidden\" name=\"team_admin\" value=\"$i\">";
-          echo "<input type=\"hidden\" name=\"task\" value=\"$j\">";
-          echo "<input type=\"submit\" value=\"" . $points[$i][$j] . "\">";
-          echo "</form></td>";
+          $html .= "<td><form action=\"index.php?admin=" . $_GET["admin"] . "\" method=\"post\">";
+          $html .= "<input type=\"hidden\" name=\"team_admin\" value=\"$i\">";
+          $html .= "<input type=\"hidden\" name=\"task\" value=\"$j\">";
+          $html .= "<input type=\"submit\" value=\"" . $points[$i][$j] . "\">";
+          $html .= "</form></td>";
         }
         else {
-          echo "<td>" . $points[$i][$j] . "</td>";
+          $html .= "<td>" . $points[$i][$j] . "</td>";
         }
         if($points[$i][$j]) $total += $tasks[$j][1];
       }
-      echo "<td>$total</td>";
-      echo "</tr>";
+      $html .= "<td>$total</td>";
+      $html .= "</tr>";
+      $out_html[$i] = $html;
+      $out_points[$i] = $total;
     }
+    array_multisort($out_points, SORT_DESC, $out_html);
+    foreach($out_html as $html) echo $html;
     echo "</table>";
   }
   
