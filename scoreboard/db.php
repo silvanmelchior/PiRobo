@@ -3,7 +3,6 @@
   class FileDB {
   
     public function __construct() {
-      echo "constucted";
       if(!file_exists($this->teams_file) || !file_exists($this->tasks_file)) {
         echo "Scoreboard not initialized";
         die();
