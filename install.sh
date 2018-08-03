@@ -191,13 +191,28 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Install Drivers II
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Install Drivers II ===";
+
+  pip3 install Pillow
+  apt-get update
+  apt-get install -y libtiff5
+  
+  echo $VERSHOULD > $VERIS;
+fi
+
+
+
 # TODO
 # Code:
 #   Drivers (i2c-things)
 #   Code-Editor HW-access (i2c-things)
 #   Display/Joystick (and maybe functions to access them)
 #   WLAN
-#   Show CPU-usage etc on start-screen (and maybe battery percentage etc.)
 #   Log-Files Appache not touchscreen and status logging etc.
 #   Helpful main.c (and copy as template.c) as default
 # Detail Bug:
@@ -216,4 +231,4 @@ fi
 #   Battery guideline allowed voltage
 # Fancy:
 #   Remote-Ctrl all Robots (run code, shutdown/reboot, ...)
-
+#   Tensorflow / Reinforcement learning / ...
