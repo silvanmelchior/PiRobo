@@ -199,6 +199,7 @@ if (( `cat $VERIS` < $VERSHOULD )); then
   echo "=== Install Drivers II ===";
 
   pip3 install Pillow
+  pip3 install psutil
   apt-get update
   apt-get install -y libtiff5
   
@@ -206,13 +207,10 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
-
 # TODO
 # Code:
-#   Drivers (i2c-things)
-#   Code-Editor HW-access (i2c-things)
-#   Display/Joystick (and maybe functions to access them)
-#   WLAN
+#   Joystick (WLAN, shutdown/reboot, maybe start external program)
+#   Code-Editor HW-access (display, joystick, external GPIOs, i2c-bus)
 #   Log-Files Appache not touchscreen and status logging etc.
 #   Helpful main.c (and copy as template.c) as default
 # Detail Bug:
@@ -222,6 +220,7 @@ fi
 # Scoreboard (see ownCloud)
 # Network incl. possibility to access inet
 # Test:
+#   Test how long battery holds (early enough!)
 #   Test different browsers! E.g. Edge on windows
 #   Test with many devices in same wlan w/o inet-access (camera update rate?)
 # Document:
