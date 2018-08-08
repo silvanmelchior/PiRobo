@@ -239,10 +239,25 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Fixes
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Fixes ===";
+
+  pip3 install psutil
+  echo "annotation" > /var/www/cam_interface/uconfig
+  echo "video_width 1296" >> /var/www/cam_interface/uconfig
+  echo "video_height 972" >> /var/www/cam_interface/uconfig
+
+  echo $VERSHOULD > $VERIS;
+fi
+
+
 
 # TODO
 # Code:
-#   Joystick (WLAN, shutdown/reboot, maybe start external program)
 #   Code-Editor HW-access (display, joystick, external GPIOs, i2c-bus)
 #   Log-Files Appache not touchscreen and status logging etc.
 #   Helpful main.c (and copy as template.c) as default
@@ -253,8 +268,8 @@ fi
 # Scoreboard (see ownCloud)
 # Network incl. possibility to access inet
 # Test:
-#   Test how long battery holds (early enough!)
-#   Test different browsers! E.g. Edge on windows
+#   Test how long battery holds
+#   Test different browsers! E.g. edge on windows
 #   Test with many devices in same wlan w/o inet-access (camera update rate?)
 # Document:
 #   Explanation how to use at home (WLAN, admin-interface)
