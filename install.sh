@@ -207,6 +207,20 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Install Drivers III
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Install Drivers III ===";
+
+  pip3 install wifi
+  
+  echo $VERSHOULD > $VERIS;
+fi
+
+
+
 # TODO
 # Code:
 #   Joystick (WLAN, shutdown/reboot, maybe start external program)
