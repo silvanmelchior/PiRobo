@@ -220,6 +220,25 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Configure Default Wlan II
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Configure Default Wlan II ===";
+
+  echo "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev" > /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "update_config=1" >> /etc/wpa_supplicant/wpa_supplicant.conf
+  echo "" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "network={" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "  ssid=\"PiRobo_Ctrl\"" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "  psk=\"raspberry007\"" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+  echo "}" >> /etc/wpa_supplicant/wpa_supplicant.conf 
+
+  echo $VERSHOULD > $VERIS;
+fi
+
+
 
 # TODO
 # Code:
