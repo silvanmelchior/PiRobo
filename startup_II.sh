@@ -16,4 +16,5 @@ SCRIPTDIR=$(dirname $SCRIPTPATH);
 python3 $SCRIPTDIR/services/web_service.py &
 python3 $SCRIPTDIR/services/hw_service.py &
 python3 $SCRIPTDIR/services/display_service.py &
+python3 $SCRIPTDIR/services/discovery_service.py &
 
