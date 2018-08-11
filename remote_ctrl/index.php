@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <script src="main.js?v=1"></script>
+    <link rel="stylesheet" href="main.css?v=1">
     <title>PiRobo Remote Ctrl</title>
   </head>
   <body>

@@ -1,0 +1,11 @@
+.client_div {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  text-align: center;
+}
+
+.client_img {
+  width: 100%;
+}
