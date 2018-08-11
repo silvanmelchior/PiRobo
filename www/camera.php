@@ -12,6 +12,6 @@
 	<body>
 		<center>
 			<h1>PiRobo Camera</h1>
-	    <img src="/cam_interface/cam_pic_new.php?pDelay=100000">
+	    <img src="/cam_interface/cam_pic_new.php?pDelay=50000">
 		</center>
 </html>

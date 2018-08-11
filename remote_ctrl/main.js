@@ -34,7 +34,7 @@ function camera_view() {
   html = "";
   for(i=0; i<clients.length; i++) {
     html += "<div class='client_div'>";
-    html += "<img class='client_img' src=\"http://" + clients[i].ip + "/cam_interface/cam_pic_new.php?pDelay=100000\">";
+    html += "<img class='client_img' src=\"http://" + clients[i].ip + "/cam_interface/cam_pic_new.php?pDelay=50000\">";
     html += "<p><a href=\"http://" + clients[i].ip + "/\">" + clients[i].ip + "</a></p>";
     html += "</div>";
   }

@@ -256,6 +256,6 @@ function init() {
 	document.getElementById("cam_pic").ontouchstart = servostart
 	document.getElementById("cam_pic").ontouchmove = servomove
 	document.getElementById("cam_pic").ontouchend = servoend
-	document.getElementById("cam_pic").src = "/cam_interface/cam_pic_new.php?pDelay=100000"
+	document.getElementById("cam_pic").src = "/cam_interface/cam_pic_new.php?pDelay=50000"
 	setInterval(send_cmd, 100)
 }
