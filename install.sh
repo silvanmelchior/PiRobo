@@ -271,6 +271,7 @@ fi
 #   Test how long battery holds
 #   Test different browsers! E.g. edge on windows
 #   Test with many devices in same wlan w/o inet-access (camera update rate?)
+#   Test remote-update on all devices simultaneously (also how to do w/o inet?)
 # Document:
 #   Explanation how to use at home (WLAN, admin-interface)
 #   Admin-Iface reminder that update s.t. from main screen
