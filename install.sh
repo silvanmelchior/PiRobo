@@ -255,28 +255,34 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Apache Logfiles
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Apache Logfiles ===";
+
+  sed -i -e 's/" dontlog/|\/status.php$|\/keyboard.php$|\/cmd.php$" dontlog/g' /etc/apache2/sites-available/raspicam.conf
+
+  echo $VERSHOULD > $VERIS;
+fi
+
+
+
 
 # TODO
 # Code:
-#   Code-Editor HW-access (display, joystick, external GPIOs, i2c-bus)
-#   Log-Files Appache not touchscreen and status logging etc.
-#   Helpful main.c (and copy as template.c) as default
-# Detail Bug:
-#   run-cmd on website need 2s for output if same as before
-#   (and fresh installation fredy strange first use)
-#   overview-page mobile layout
-# Scoreboard (see ownCloud)
-# Network incl. possibility to access inet
+#   Parcour-Part of code
+# Scoreboard
 # Test:
-#   Test how long battery holds
-#   Test different browsers! E.g. edge on windows
-#   Test with many devices in same wlan w/o inet-access (camera update rate?)
-#   Test remote-update on all devices simultaneously (also how to do w/o inet?)
-# Document:
-#   Explanation how to use at home (WLAN, admin-interface)
-#   Admin-Iface reminder that update s.t. from main screen
-#   HW-documentation to build robot
-#   Battery guideline allowed voltage
-# Fancy:
-#   Remote-Ctrl all Robots (run code, shutdown/reboot, ...)
+#   Test different browsers, e.g. edge on windows
+# Documentation:
+#   SW-Guide incl. Admin-Part
+#   HW-Documentation to build robot
+# Ideas:
+#   Remote-Ctrl Run Code
+#   Display Run/Stop Code
+#   Access Display / Joystick / Camera / further HW from Code Editor
+#   Communication between Robots
+#   Line-Follower Timestoper (camera light barrier)
 #   Tensorflow / Reinforcement learning / ...
