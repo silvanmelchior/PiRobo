@@ -268,21 +268,3 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
-
-
-# TODO
-# Code:
-#   Parcour-Part of code
-# Scoreboard
-# Test:
-#   Test different browsers, e.g. edge on windows
-# Documentation:
-#   SW-Guide incl. Admin-Part
-#   HW-Documentation to build robot
-# Ideas:
-#   Remote-Ctrl Run Code
-#   Display Run/Stop Code
-#   Access Display / Joystick / Camera / further HW from Code Editor
-#   Communication between Robots
-#   Line-Follower Timestoper (camera light barrier)
-#   Tensorflow / Reinforcement learning / ...
