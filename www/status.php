@@ -11,10 +11,10 @@
 	
 	  # calc hash
 	  $hash = hash("md5", $msg);
-    if($hash == $_GET["hash"]) {
-      usleep(100000);   // TODO: DOES THIS MAKE SENSE???
-      continue;
+    if($hash != $_GET["hash"]) {
+      break;
     }
+    usleep(100000);
     
   }
 
