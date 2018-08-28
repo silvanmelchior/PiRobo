@@ -30,7 +30,7 @@
                 Camera View
               </div>
               <div class="card-body">
-                <p>Blablabla</p>
+                <img id="cam_pic">
               </div>
             </div>
           </div>
@@ -40,7 +40,10 @@
               <div class="card-header">
                 Touch Input
               </div>
-              <div class="card-body">         
+              <div class="card-body">        
+		            <div id="touch_input_area">
+			            <div id="touch_ctrl"></div>  		
+		            </div> 
               </div>
             </div>
           </div>
@@ -54,33 +57,33 @@
                 <div class="container-fluid">
                   <div class="row">
                     <div class="number_area">
-                      <div id="key_1">1</div>
-                      <div id="key_2">2</div>
-                      <div id="key_3">3</div>
-                      <div id="key_4">4</div>
-                      <div id="key_5">5</div>
-                      <div id="key_6">6</div>
-                      <div id="key_7">7</div>
-                      <div id="key_8">8</div>
-                      <div id="key_9">9</div>
-                      <div id="key_0">0</div>
+                      <div id="key_1" class="touch_key">1</div>
+                      <div id="key_2" class="touch_key">2</div>
+                      <div id="key_3" class="touch_key">3</div>
+                      <div id="key_4" class="touch_key">4</div>
+                      <div id="key_5" class="touch_key">5</div>
+                      <div id="key_6" class="touch_key">6</div>
+                      <div id="key_7" class="touch_key">7</div>
+                      <div id="key_8" class="touch_key">8</div>
+                      <div id="key_9" class="touch_key">9</div>
+                      <div id="key_0" class="touch_key">0</div>
                     </div>
     		          </div>
                   <div class="row">
                     <div class="col-md-6 mb-4">
 		                  <div class="keyboard_area">
-			                  <div id="key_w" class="keyboard_up">W</div>
-			                  <div id="key_a" class="keyboard_left">A</div>
-			                  <div id="key_s" class="keyboard_down">S</div>
-			                  <div id="key_d" class="keyboard_right">D</div>
+			                  <div id="key_w" class="keyboard_up touch_key">W</div>
+			                  <div id="key_a" class="keyboard_left touch_key">A</div>
+			                  <div id="key_s" class="keyboard_down touch_key">S</div>
+			                  <div id="key_d" class="keyboard_right touch_key">D</div>
 		                  </div>
       		          </div>
                     <div class="col-md-6 mb-4">
 		                  <div class="keyboard_area">
-			                  <div id="key_i" class="keyboard_up">I</div>
-			                  <div id="key_j" class="keyboard_left">J</div>
-			                  <div id="key_k" class="keyboard_down">K</div>
-			                  <div id="key_l" class="keyboard_right">L</div>
+			                  <div id="key_i" class="keyboard_up touch_key">I</div>
+			                  <div id="key_j" class="keyboard_left touch_key">J</div>
+			                  <div id="key_k" class="keyboard_down touch_key">K</div>
+			                  <div id="key_l" class="keyboard_right touch_key">L</div>
 		                  </div>
       		          </div>
     		          </div>

@@ -67,3 +67,30 @@
   box-shadow: none !important;
 }
 
+#cam_pic {
+	width: 100%;
+	max-width: 450px;
+	margin: auto;
+	display: block;
+}
+
+#touch_input_area {
+	position: relative;
+	width: 172px;
+	height: 172px;
+	margin: auto;
+	border: 1px solid #BBB;
+	border-radius: 28px;
+}
+
+#touch_ctrl {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	background-color: #EEE;
+	border: 1px solid #BBB;
+	border-radius: 50%;
+	background-color: #AAA;
+	border: 1px solid #666;
+}
+

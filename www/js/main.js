@@ -1,5 +1,11 @@
 var block_output = false;
 var output = "";
+var view_cam = false;
+var x_finger_bak = null
+var y_finger_bak = null
+var x_obj_bak = 60
+var y_obj_bak = 60
+
 
 function compile() {
   block_output = true;
@@ -64,7 +70,16 @@ function update(hash) {
 
 
 function toggle_cam() {
-  $('#collapseCam').collapse('toggle');
+  if(view_cam) {
+    document.getElementById("cam_pic").src = ""
+    $('#collapseCam').collapse('hide');
+    view_cam = false
+  }
+  else {
+    document.getElementById("cam_pic").src = "/cam_interface/cam_pic_new.php?pDelay=50000"
+    $('#collapseCam').collapse('show');
+    view_cam = true
+  }
 }
 
 
@@ -83,4 +98,59 @@ function toggle_out() {
 }
 
 
+function touchstart(e) {
+	x_finger_bak = e.changedTouches[0].screenX
+	y_finger_bak = e.changedTouches[0].screenY
+	return false
+}
+
+function touchmove(e) {
+	clipped = pos_clip(e)
+	pos_ctrl(clipped[0], clipped[1])
+	x = clipped[0]*100/120
+	y = clipped[1]*100/120
+  if(y <= 50) {
+    speed = (50-y)/50
+    sign = 1
+  }
+  else {
+    speed = (y-50)/50
+    sign = -1
+  }
+  l = Math.min(1,1 - (50-x)/50)
+  r = Math.min(1,1 - (x-50)/50)
+  l *= speed*sign
+  r *= speed*sign
+	//queue_cmd_motor("motor " + l + " " + r)
+	return false
+}
+
+function touchend(e) {
+	pos_ctrl(x_obj_bak, y_obj_bak)
+	//queue_cmd_motor("motor 0 0")
+	return false
+}
+
+function pos_clip(e) {
+	var new_x = e.changedTouches[0].screenX - x_finger_bak + x_obj_bak
+	var new_y = e.changedTouches[0].screenY - y_finger_bak + y_obj_bak
+	if(new_x < 0) new_x = 0
+	if(new_y < 0) new_y = 0
+	if(new_x > 120) new_x = 120
+	if(new_y > 120) new_y = 120
+	return [new_x,new_y]
+}
+
+function pos_ctrl(x, y) {
+	document.getElementById("touch_ctrl").style.top =  y + 'px'
+	document.getElementById("touch_ctrl").style.left = x + 'px'
+}
+
+
 update('');
+toggle_cam();
+pos_ctrl(x_obj_bak, y_obj_bak)
+document.getElementById("touch_input_area").ontouchstart = touchstart
+document.getElementById("touch_input_area").ontouchmove = touchmove
+document.getElementById("touch_input_area").ontouchend = touchend
+

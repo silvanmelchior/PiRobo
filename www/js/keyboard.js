@@ -68,6 +68,20 @@ function keyup(e) {
   }
 }
 
+function keytouchstart(e) {
+  var target = e.target.id.split('_')[1]
+  keytable[target] = true
+  keyupdate()
+  return false
+}
+
+function keytouchend(e) {
+  var target = e.target.id.split('_')[1]
+  keytable[target] = false
+  keyupdate()
+  return false
+}
+
 function queue_cmd(cmd) {
 	next_cmd = cmd;
 }
@@ -85,4 +99,6 @@ function send_cmd() {
 
 document.onkeydown = keydown
 document.onkeyup = keyup
+$('.touch_key').bind('touchstart', keytouchstart);
+$('.touch_key').bind('touchend', keytouchend);
 setInterval(send_cmd, 100)
