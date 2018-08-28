@@ -5,8 +5,8 @@
 		<meta name="author" content="Silvan Melchior">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>PiRobo Ctrl</title>
-		<link href="style/main.css?v=2" rel="stylesheet" type="text/css" />
-		<script src="script/main.js?v=2"></script>
+		<link href="style/main.css?v=3" rel="stylesheet" type="text/css" />
+		<script src="script/main.js?v=3"></script>
 	</head>
 
 	<body>
@@ -21,6 +21,10 @@
 			<div id="keyboard_right">&rarr;</div>
 			<div id="touch_ctrl"></div>  		
 		</div>
+		<center>
+			<p><b><span id="mode_show"></span></b></p>
+			<p><a href="javascript:mode_change();"><span id="mode_change"></span></a></p><br>
+		</center>
 		<div id="expl_div">
 		  <p>Keyboard: Use arrow keys to move roboter, use W,A,S,D to control servo.</p>
 		  <p>Touchscreen: Use joystick to move roboter, drag camera image to control servo.</p>

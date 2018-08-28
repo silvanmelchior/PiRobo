@@ -21,14 +21,16 @@ var keypressed = {
 
 var x_finger_bak = null
 var y_finger_bak = null
-var x_obj_bak = 60
-var y_obj_bak = 60
+var x_obj_bak = 70
+var y_obj_bak = 70
 var pan = 0.5
 var tilt = 0.5
 var pan_bak = 0.5
 var tilt_bak = 0.5
 var servo_steps = 0.05
 var servo_divider = 500
+var max_speed = null
+var mode = 1
 
 var next_cmd_motor = ""
 var last_cmd_motor = ""
@@ -131,8 +133,8 @@ function touchstart(e) {
 function touchmove(e) {
 	clipped = pos_clip(e)
 	pos_ctrl(clipped[0], clipped[1])
-	x = clipped[0]*100/120
-	y = clipped[1]*100/120
+	x = clipped[0]*100/140
+	y = clipped[1]*100/140
   if(y <= 50) {
     speed = (50-y)/50
     sign = 1
@@ -141,10 +143,10 @@ function touchmove(e) {
     speed = (y-50)/50
     sign = -1
   }
-  l = Math.min(1,1 - (50-x)/50)
-  r = Math.min(1,1 - (x-50)/50)
-  l *= speed*sign
-  r *= speed*sign
+  l = Math.pow(Math.min(1,1 - (50-x)/50), 0.8)
+  r = Math.pow(Math.min(1,1 - (x-50)/50), 0.8)
+  l *= speed*sign*max_speed
+  r *= speed*sign*max_speed
 	queue_cmd_motor("motor " + l + " " + r)
 	return false
 }
@@ -160,8 +162,8 @@ function pos_clip(e) {
 	var new_y = e.changedTouches[0].screenY - y_finger_bak + y_obj_bak
 	if(new_x < 0) new_x = 0
 	if(new_y < 0) new_y = 0
-	if(new_x > 120) new_x = 120
-	if(new_y > 120) new_y = 120
+	if(new_x > 140) new_x = 140
+	if(new_y > 140) new_y = 140
 	return [new_x,new_y]
 }
 
@@ -242,11 +244,31 @@ function send_cmd() {
 }
 
 
+//
+// Function for UI
+//
+function mode_change() {
+  if(mode == 0) {
+    max_speed = 1
+    mode = 1
+    document.getElementById("mode_show").innerHTML = "Pro"
+    document.getElementById("mode_change").innerHTML = "(change to beginner mode)"
+  }
+  else if(mode == 1) {
+    max_speed = 0.5
+    mode = 0
+    document.getElementById("mode_show").innerHTML = "Beginner"
+    document.getElementById("mode_change").innerHTML = "(change to pro mode)"
+  }
+}
+
+
 
 //
 // Function for init
 //
 function init() {
+  mode_change()
 	pos_ctrl(x_obj_bak, y_obj_bak)
 	document.onkeydown = keydown
 	document.onkeyup = keyup
