@@ -63,4 +63,24 @@ function update(hash) {
 }
 
 
+function toggle_cam() {
+  $('#collapseCam').collapse('toggle');
+}
+
+
+function toggle_touch() {
+  $('#collapseTouch').collapse('toggle');
+}
+
+
+function toggle_key() {
+  $('#collapseKey').collapse('toggle');
+}
+
+
+function toggle_out() {
+  $('#collapseOut').collapse('toggle');
+}
+
+
 update('');

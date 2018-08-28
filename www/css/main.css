@@ -58,3 +58,12 @@
 	left: 120px;
 }
 
+.btn-nohover:not(.active):hover {
+  background-color: transparent !important;
+  color: #6c757d !important;
+}
+
+.btn-nohover:focus {
+  box-shadow: none !important;
+}
+
