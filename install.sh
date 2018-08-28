@@ -268,3 +268,17 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# Admin Switch
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== Admin Switch ===";
+
+  echo "0" > $SCRIPTDIR/www/admin.txt
+  chmod 777 $SCRIPTDIR/www/admin.txt
+
+  echo $VERSHOULD > $VERIS;
+fi
+
+

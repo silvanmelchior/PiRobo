@@ -1,3 +1,17 @@
+<?php
+  $state = preg_replace('/\s+/', '', file_get_contents("admin.txt"));
+  if(isset($_GET["admin_togle"])) {
+    if($state == "0") {
+      file_put_contents("admin.txt", "1");
+    }
+    else {
+      file_put_contents("admin.txt", "0");
+    }
+    header("Location: index.php");
+    exit();
+  }
+  $admin = ($state == "1");
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,12 +25,18 @@
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="index.php">PiRobo</a>      
+      <a class="navbar-brand<?php if($admin) echo " d-none d-sm-block";?>" href="index.php">PiRobo<?php if($admin) echo " Admin";?></a>      
+      <?php if($admin) echo "<a class='navbar-brand d-block d-sm-none' href='index.php'>Pi</a>";?>
       <ul class="navbar-nav mr-auto">
       </ul>
         <form action="icecoder" target="_blank">
-          <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-external-link-alt"></i> Code Editor</button>
+          <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-external-link-alt"></i> Editor</button>
         </form>
+        <?php if($admin) { ?>
+        <form action="admin_ctrl" target="_blank">
+          <button class="btn btn-outline-secondary my-2 my-sm-0 ml-2" type="submit"><i class="fas fa-external-link-alt"></i> Drive</button>
+        </form>
+        <?php } ?>
         <button type="button" class="btn btn-outline-secondary my-2 my-sm-0 ml-2" data-toggle="modal" data-target="#shutdownModal"><i class="fas fa-power-off"></i></button>
     </nav>
 
@@ -30,7 +50,9 @@
                 Camera View
               </div>
               <div class="card-body">
+                <?php if($admin) echo "<a href='/cam_interface' target='_blank'>";?>
                 <img id="cam_pic">
+                <?php if($admin) echo "</a>";?>
               </div>
             </div>
           </div>
@@ -139,7 +161,7 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">System ID</h5>
-              <p class="card-text"><code><?php echo file_get_contents("../ID.txt"); ?></code></p>
+              <p class="card-text" onclick="admin_unlock()"><code><?php echo file_get_contents("../ID.txt"); ?></code></p>
               <h5 class="card-title">SW Version</h5>
               <p class="card-text"><code><?php echo file_get_contents("../VERSION.txt"); ?></code></p>
             </div>
@@ -179,7 +201,7 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js?v=2"></script>
+    <script src="js/main.js?v=3"></script>
     <script src="js/keyboard.js?v=2"></script>
 
   </body>

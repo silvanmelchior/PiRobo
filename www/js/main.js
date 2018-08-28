@@ -5,6 +5,7 @@ var x_finger_bak = null
 var y_finger_bak = null
 var x_obj_bak = 60
 var y_obj_bak = 60
+var admin_cnt = 0
 
 
 function compile() {
@@ -134,6 +135,14 @@ function pos_ctrl(x, y) {
 	document.getElementById("touch_ctrl").style.left = x + 'px'
 }
 
+function admin_unlock() {
+  admin_cnt += 1;
+  if(admin_cnt >= 5) {
+    if(confirm("change admin state?")) {
+      window.location = "index.php?admin_togle";
+    }
+  }
+}
 
 update('');
 toggle_cam();

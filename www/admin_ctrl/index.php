@@ -4,14 +4,14 @@
 		<meta charset="utf-8"> 
 		<meta name="author" content="Silvan Melchior">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>PiRobo Ctrl</title>
+		<title>PiRobo Navigator</title>
 		<link href="style/main.css?v=3" rel="stylesheet" type="text/css" />
 		<script src="script/main.js?v=3"></script>
 	</head>
 
 	<body>
 		<center>
-			<h1>PiRobo Admin Ctrl</h1>
+			<h1>PiRobo Navigator</h1>
 		</center>
 		<img id="cam_pic">
 		<div id="input_area">
