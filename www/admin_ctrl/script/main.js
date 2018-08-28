@@ -56,21 +56,21 @@ function motor_update() {
 		keypressed['right'] ? col_yes : col_no
 
   if(keypressed['up'] && !keypressed['left'] && !keypressed['right'] && !keypressed['down'])
-    queue_cmd_motor("motor 1 1");
+    queue_cmd_motor("motor " + max_speed + " " + max_speed + "");
   else if(keypressed['up'] && keypressed['left'] && !keypressed['right'] && !keypressed['down'])
-    queue_cmd_motor("motor 0 1");
+    queue_cmd_motor("motor 0 " + max_speed + "");
   else if(keypressed['up'] && !keypressed['left'] && keypressed['right'] && !keypressed['down'])
-    queue_cmd_motor("motor 1 0");
+    queue_cmd_motor("motor " + max_speed + " 0");
   else if(!keypressed['up'] && keypressed['left'] && !keypressed['right'] && !keypressed['down'])
-    queue_cmd_motor("motor -1 1");
+    queue_cmd_motor("motor -" + max_speed + " " + max_speed + "");
   else if(!keypressed['up'] && !keypressed['left'] && keypressed['right'] && !keypressed['down'])
-    queue_cmd_motor("motor 1 -1");
+    queue_cmd_motor("motor " + max_speed + " -" + max_speed + "");
   else if(!keypressed['up'] && !keypressed['left'] && !keypressed['right'] && keypressed['down'])
-    queue_cmd_motor("motor -1 -1");
+    queue_cmd_motor("motor -" + max_speed + " -" + max_speed + "");
   else if(!keypressed['up'] && keypressed['left'] && !keypressed['right'] && keypressed['down'])
-    queue_cmd_motor("motor 0 -1");
+    queue_cmd_motor("motor 0 -" + max_speed + "");
   else if(!keypressed['up'] && !keypressed['left'] && keypressed['right'] && keypressed['down'])
-    queue_cmd_motor("motor -1 0");
+    queue_cmd_motor("motor -" + max_speed + " 0");
   else
     queue_cmd_motor("motor 0 0");
 
