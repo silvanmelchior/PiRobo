@@ -17,6 +17,9 @@ volatile int key_7_state;
 volatile int key_8_state;
 volatile int key_9_state;
 
+volatile int touch_x_state;
+volatile int touch_y_state;
+
 void init_drivers(void);
 void set_motors(float l, float r);
 void set_servos(float pan, float tilt);

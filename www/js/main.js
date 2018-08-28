@@ -107,27 +107,15 @@ function touchstart(e) {
 function touchmove(e) {
 	clipped = pos_clip(e)
 	pos_ctrl(clipped[0], clipped[1])
-	x = clipped[0]*100/120
-	y = clipped[1]*100/120
-  if(y <= 50) {
-    speed = (50-y)/50
-    sign = 1
-  }
-  else {
-    speed = (y-50)/50
-    sign = -1
-  }
-  l = Math.min(1,1 - (50-x)/50)
-  r = Math.min(1,1 - (x-50)/50)
-  l *= speed*sign
-  r *= speed*sign
-	//queue_cmd_motor("motor " + l + " " + r)
+	x = Math.floor(clipped[0]*100/120)
+	y = Math.floor(clipped[1]*100/120)
+	queue_cmd("t " + x + " " + y)
 	return false
 }
 
 function touchend(e) {
 	pos_ctrl(x_obj_bak, y_obj_bak)
-	//queue_cmd_motor("motor 0 0")
+	queue_cmd("t 50 50")
 	return false
 }
 

@@ -32,7 +32,7 @@ function keyupdate() {
       document.getElementById("key_" + k).style.backgroundColor = keytable[k] ? col_yes : col_no
     }
   }
-  queue_cmd(
+  queue_cmd("k " +
     (keytable['w'] ? '1' : '0') + 
     (keytable['a'] ? '1' : '0') + 
     (keytable['s'] ? '1' : '0') + 
@@ -90,7 +90,7 @@ function send_cmd() {
 	if(next_cmd != last_cmd) {
 		last_cmd = next_cmd
 		var xhttp = new XMLHttpRequest()
-		xhttp.open("POST", "keyboard.php", true)
+		xhttp.open("POST", "cmd.php", true)
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
 		xhttp.send("ts=" + (new Date).getTime() + "&cmd=" + last_cmd)
 	}
@@ -101,4 +101,4 @@ document.onkeydown = keydown
 document.onkeyup = keyup
 $('.touch_key').bind('touchstart', keytouchstart);
 $('.touch_key').bind('touchend', keytouchend);
-setInterval(send_cmd, 100)
+setInterval(send_cmd, 50)

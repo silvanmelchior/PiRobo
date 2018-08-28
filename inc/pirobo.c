@@ -48,25 +48,33 @@ void *keyboard_server(void *threadid) {
      
     // receive a message from client
     while((read_size = recv(client_sock, client_message, 2000, 0)) > 0) {
-      // update flags
-      key_w_state = (client_message[0] == '1');
-      key_a_state = (client_message[1] == '1');
-      key_s_state = (client_message[2] == '1');
-      key_d_state = (client_message[3] == '1');
-      key_i_state = (client_message[4] == '1');
-      key_j_state = (client_message[5] == '1');
-      key_k_state = (client_message[6] == '1');
-      key_l_state = (client_message[7] == '1');
-      key_0_state = (client_message[8] == '1');
-      key_1_state = (client_message[9] == '1');
-      key_2_state = (client_message[10] == '1');
-      key_3_state = (client_message[11] == '1');
-      key_4_state = (client_message[12] == '1');
-      key_5_state = (client_message[13] == '1');
-      key_6_state = (client_message[14] == '1');
-      key_7_state = (client_message[15] == '1');
-      key_8_state = (client_message[16] == '1');
-      key_9_state = (client_message[17] == '1');
+      // if keyboard
+      if(client_message[0] == 'k') {
+        // update flags
+        key_w_state = (client_message[2] == '1');
+        key_a_state = (client_message[3] == '1');
+        key_s_state = (client_message[4] == '1');
+        key_d_state = (client_message[5] == '1');
+        key_i_state = (client_message[6] == '1');
+        key_j_state = (client_message[7] == '1');
+        key_k_state = (client_message[8] == '1');
+        key_l_state = (client_message[9] == '1');
+        key_0_state = (client_message[10] == '1');
+        key_1_state = (client_message[11] == '1');
+        key_2_state = (client_message[12] == '1');
+        key_3_state = (client_message[13] == '1');
+        key_4_state = (client_message[14] == '1');
+        key_5_state = (client_message[15] == '1');
+        key_6_state = (client_message[16] == '1');
+        key_7_state = (client_message[17] == '1');
+        key_8_state = (client_message[18] == '1');
+        key_9_state = (client_message[19] == '1');
+      }
+      // if touch
+      else if(client_message[0] == 't') {
+        client_message[read_size] = 0;
+        sscanf(client_message, "t %d %d", &touch_x_state, &touch_y_state);
+      }
     }
     
     
@@ -182,6 +190,9 @@ void init_drivers(void) {
   key_7_state = 0;
   key_8_state = 0;
   key_9_state = 0;
+  
+  touch_x_state = 50;
+  touch_y_state = 50;
 
   pthread_t thread;
   pthread_create(&thread, NULL, keyboard_server, NULL);
