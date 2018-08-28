@@ -20,6 +20,7 @@
     }
   }
   
+  array_multisort($answer);
   echo json_encode($answer);
 
   socket_close($sock);

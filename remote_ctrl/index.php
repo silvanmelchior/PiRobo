@@ -7,12 +7,15 @@
     <title>PiRobo Remote Ctrl</title>
   </head>
   <body>
-    <h1>PiRobo Remote Ctrl</h1>
+    <h1 id="title" onclick="hide_text()">PiRobo Remote Ctrl</h1>
     <div id="table_out">Loading List...</div>
+    <div id="controls">
+      <br>
+      <button onclick="shutdown_all()" type="button">Broadcast Shutdown</button>
+      <button onclick="reboot_all()" type="button">Broadcast Reboot</button>
+    </div>
+
     <script>discover()</script>
-    
-    <br>
-    <button onclick="shutdown_all()" type="button">Broadcast Shutdown</button>
-    <button onclick="reboot_all()" type="button">Broadcast Reboot</button>
+    <script>setInterval("discover()", 10000)</script>
   </body>
 </html>
