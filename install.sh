@@ -282,3 +282,20 @@ if (( `cat $VERIS` < $VERSHOULD )); then
 fi
 
 
+#
+# New code template
+#
+VERSHOULD=$((VERSHOULD+1));
+if (( `cat $VERIS` < $VERSHOULD )); then
+  echo "=== New Code Template ===";
+
+  cp $SCRIPTDIR/copysrc/main.c $HOMEPATH/usercode/main.c
+  chmod 777 $HOMEPATH/usercode/main.c
+
+  cp $SCRIPTDIR/copysrc/main $HOMEPATH/build/main
+  chmod 777 $HOMEPATH/build/main
+
+  echo $VERSHOULD > $VERIS;
+fi
+
+
