@@ -2,7 +2,7 @@
 
 ## About
 
-This repo contains software that enables AlphaBot to be programed and controled over the web.
+This repo contains software that enables AlphaBot to be programed and controlled over the web.
 
 ## Installation
 
@@ -16,7 +16,7 @@ cd PiRobo
 sudo ./install.sh
 ```
 
-Assumes a freshly installed Raspbian on the Pi (tested with raspbian stretch lite 2018-04-18) with enabled camera and i2c support
+Assumes a freshly installed Raspbian on the Pi (tested with raspbian stretch lite 2018-04-18) with enabled camera, i2c support and ssh.
 
 ## Update
 
